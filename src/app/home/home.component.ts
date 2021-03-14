@@ -8,6 +8,7 @@ import { OrganizationsService } from '../modules/core/services/organizations-ser
 import { ReviewsService } from '../modules/core/services/reviews-service/reviews.service';
 import { AuthService } from '../modules/core/services/auth-service/auth.service';
 import { Router } from '@angular/router';
+import { SignupModel } from '../models/signin.model';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,10 @@ export class HomeComponent implements OnInit {
   pending: boolean;
   loading: boolean;
   login = new LoginModel();
+  signup = new SignupModel();
   msg: string;
+  loginForm: Boolean = true;
+  signupForm: Boolean = false;
 
   constructor(
     private orgService: OrganizationsService,
@@ -93,6 +97,25 @@ export class HomeComponent implements OnInit {
 
   showReviews(index: number): void {
     this.allOrganizations[index].showReviews = !this.allOrganizations[index].showReviews;
+  }
+
+  viewSignupForm(){
+    this.signupForm = true;
+    this.loginForm = false;
+  }
+
+  viewLoginForm(){
+    this.signupForm = false;
+    this.loginForm = true;
+  }
+
+  signupUser(){
+    this.authService.signup(this.signup).subscribe((res: any) => {
+      this.msg = res.message;
+    }, (err) => {
+      this.failed = true;
+      this.message = 'We had trouble during registration. Please try again';
+    });
   }
 
 }
