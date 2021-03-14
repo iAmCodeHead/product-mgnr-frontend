@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://product-mgnr.herokuapp.com',
     firebase : {
     apiKey: "AIzaSyD0tw3e3q8CD4nQZUp8CW6OtBiDnr_3vAE",
     authDomain: "product-mgt-system.firebaseapp.com",
