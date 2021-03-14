@@ -1,0 +1,25 @@
+<app-header header="Product Mgt App!"></app-header>
+
+<div class="content" role="main">
+    <div style="color: brown;">{{message}}</div>
+    <form #productForm="ngForm" (submit)="newProduct()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Product name</label>
+          <input type="email" name="name" class="form-control" [(ngModel)]="product.productName" required id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file" name="imageUrl" class="form-control" [(ngModel)]="product.imageUrl" required id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Location</label>
+            <select name="location" name="location" [(ngModel)]="product.location" class="form-control" id="location" required>
+                <option value="lagos">Lagos</option>
+                <option value="benin">Benin</option>
+                <option value="abuja">Abuja</option>
+                <option value="kano">Kano</option>
+            </select>
+        </div>
+        <button type="submit" [disabled]="productForm.invalid || loading" class="btn btn-primary full-width">Upload Product</button>
+      </form>
+</div>
